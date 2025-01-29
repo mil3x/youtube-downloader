@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar Fragmento de YouTube</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input, select, button { display: block; margin: 10px auto; width: 80%; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Descargar Fragmento de YouTube</h2>
+    <input type="text" id="url" placeholder="URL del video">
+    <input type="number" id="start" placeholder="Tiempo de inicio (segundos)">
+    <input type="number" id="end" placeholder="Tiempo de fin (segundos)">
+    
+    <label for="format">Formato:</label>  <!-- Agregado para accesibilidad -->
+    <select id="format">
+        <option value="mp4">MP4</option>
+        <option value="mp3">MP3</option>
+    </select>
+
+    <button onclick="generateDownloadLink()">Descargar</button>
+    <p id="output"></p>
+
+    <script>
+        function generateDownloadLink() {
+            let url = document.getElementById("url").value;
+            let start = document.getElementById("start").value;
+            let end = document.getElementById("end").value;
+            let format = document.getElementById("format").value;
+
+            if (!url || !start || !end) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            // Generar enlace de descarga
+            let downloadUrl = `https://your-server.com/download?url=${encodeURIComponent(url)}&start=${start}&end=${end}&format=${format}`;
+
+            // Mostrar el enlace en pantalla
+            document.getElementById("output").innerHTML = `
+                <a href="${downloadUrl}" target="_blank">Haga clic aquí para descargar</a>
+            `;
+        }
+    </script>
+</body>
+</html>
